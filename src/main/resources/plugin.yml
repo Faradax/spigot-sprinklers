@@ -1,0 +1,3 @@
+name: Sprinklers
+main: de.faradax.minecraft.sprinklers.Plugin
+version: 1.0.0-SNAPSHOT
