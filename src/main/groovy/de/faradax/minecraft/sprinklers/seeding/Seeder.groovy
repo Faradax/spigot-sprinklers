@@ -3,6 +3,7 @@ package de.faradax.minecraft.sprinklers.seeding
 import org.bukkit.*
 import org.bukkit.block.Block
 import org.bukkit.block.BlockFace
+import org.bukkit.material.MaterialData
 import org.bukkit.plugin.Plugin
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scheduler.BukkitTask
@@ -33,7 +34,7 @@ class Seeder implements Sprinkler {
                     drawSeedParticles()
                 },
                 0,
-                1
+                7
         )
         plantTask = scheduler.runTaskTimer(
                 plugin,
@@ -94,12 +95,26 @@ class Seeder implements Sprinkler {
     }
 
     private void drawSeedParticles() {
+
+        def dx = random.nextDouble() - 0.5
+        def dy = random.nextDouble() / 3 + 0.3
+        def dz = random.nextDouble() - 0.5
+
         world.spawnParticle(
-                Particle.VILLAGER_HAPPY,
+                Particle.BLOCK_DUST,
                 block.location.add(0.5, 1, 0.5),
                 0,
-                0,0,0,
-                1
+                dx, dy, dz,
+                1.0,
+                new MaterialData(Material.DIRT, (byte) 2)
+        )
+        world.spawnParticle(
+                Particle.BLOCK_CRACK,
+                block.location.add(0.5, 1, 0.5),
+                0,
+                0, 0, 0,
+                1.0,
+                new MaterialData(Material.DIRT, (byte) 2)
         )
     }
 

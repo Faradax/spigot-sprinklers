@@ -37,7 +37,7 @@ class Fertilizer implements Sprinkler {
                     drawSprinklerParticles()
                 },
                 0,
-                1
+                7
         )
         cropTask = scheduler.runTaskTimer(
                 plugin,
@@ -47,7 +47,6 @@ class Fertilizer implements Sprinkler {
                 0,
                 3
         )
-
 
     }
 
@@ -85,21 +84,21 @@ class Fertilizer implements Sprinkler {
     }
 
     private void drawWaterCannon(double angle) {
-        for (int i = 0; i < 50; ++i) {
+        for (int i = 0; i < 40; ++i) {
             def location =
                     block.location
                             .add(0.5, 1, 0.5)
                             .add(
-                            i * 0.075 * Math.sin(angle),
-                            0.05 * i - 0.0002 * (i**2),
-                            i * 0.075 * Math.cos(angle))
+                            i * 0.10 * Math.sin(angle),
+                            0.05 * i - 0.0004 * (i**2),
+                            i * 0.10 * Math.cos(angle))
 
 
 
             world.spawnParticle(
                     Particle.WATER_DROP,
                     location,
-                    3,
+                    2,
                     0, 0, 0,
                     0
             )
