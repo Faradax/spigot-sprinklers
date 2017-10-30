@@ -18,7 +18,7 @@ class Plugin extends JavaPlugin {
     void onEnable() {
         super.onEnable()
         def sprinklerDetector = new SprinklerDetector(this)
-        getServer().getPluginManager().registerEvents(sprinklerDetector, this)
+        server.pluginManager.registerEvents(sprinklerDetector, this)
     }
 
     @Override
@@ -34,7 +34,7 @@ class Plugin extends JavaPlugin {
     void initializeSprinkler(Block dispenserBlock) {
         if (!sprinklers.containsKey(dispenserBlock)) {
             def fertilizer = new Fertilizer(this, dispenserBlock)
-            fertilizer.initialize(getServer().getScheduler())
+            fertilizer.initialize(server.scheduler)
             sprinklers.put(dispenserBlock, fertilizer)
         }
     }
@@ -43,7 +43,7 @@ class Plugin extends JavaPlugin {
     void initializeSeeder(Block block) {
         if (!sprinklers.containsKey(block)) {
             def seeder = new Seeder(this, block, Material.CROPS)
-            seeder.initialize(getServer().getScheduler())
+            seeder.initialize(server.scheduler)
             sprinklers.put(block, seeder)
         }
     }
