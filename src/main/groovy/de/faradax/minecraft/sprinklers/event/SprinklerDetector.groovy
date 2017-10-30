@@ -7,6 +7,7 @@ import org.bukkit.block.BlockFace
 import org.bukkit.block.Dispenser
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockDispenseEvent
 import org.bukkit.event.block.BlockPhysicsEvent
 import org.bukkit.inventory.Inventory
@@ -61,6 +62,17 @@ class SprinklerDetector implements Listener {
                 event.cancelled = true
             }
         } else {
+            sprinklerPlugin.removeSprinkler(block)
+        }
+    }
+
+    /**
+     * Responsible for disabling sprinklers on destruction.
+     */
+    @EventHandler
+    void onBlockBreak(final BlockBreakEvent event) {
+        Block block = event.block
+        if (isDispenser(block)) {
             sprinklerPlugin.removeSprinkler(block)
         }
     }
