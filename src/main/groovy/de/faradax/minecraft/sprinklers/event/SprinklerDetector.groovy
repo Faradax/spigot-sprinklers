@@ -55,8 +55,10 @@ class SprinklerDetector implements Listener {
         if (powered && facingUp) {
             if (contains5BoneMeal) {
                 sprinklerPlugin.initializeSprinkler(block)
+                event.cancelled = true
             } else if (containsSeeds) {
                 sprinklerPlugin.initializeSeeder(block)
+                event.cancelled = true
             }
         } else {
             sprinklerPlugin.removeSprinkler(block)
